@@ -15,7 +15,7 @@ function createWindow() {
 
     // open index.html
     win.loadURL(url.format({
-        pathname: path.join(__dirname, 'index.html'),
+        pathname: './user_interface/index.html',
         protocol: 'file',
         slashes: true
     }));
