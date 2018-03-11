@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/fauliath/Monitor-Everything/issues"
   },
-  "homepage": "https://github.com/fauliath/Monitor-Everything#readme"
+  "homepage": "https://github.com/fauliath/Monitor-Everything#readme",
+  "dependencies": {
+    "electron-json-storage": "^4.0.2",
+    "hammerjs": "^2.0.8",
+    "pickadate": "^3.5.6"
+  }
 }

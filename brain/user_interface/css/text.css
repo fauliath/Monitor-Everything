@@ -1,5 +1,16 @@
 .c-header {
     color: #E5DFC5;
     font-family: sans-serif;
-    margin-top: 5%;
+    margin-top: 6%;
+}
+
+.c-title {
+    color: #B48375;
+    font-family: 'Share Tech Mono', cursive;
+}
+
+.c-subtitle {
+    color: #B48375;
+    font-family: 'Share Tech Mono', cursive;
+    margin-bottom: 2%;
 }

@@ -1,4 +1,4 @@
-var sonar_id = 0;
+const storage = require('electron-json-storage');
 
 function startListening(channel) {
 
@@ -20,34 +20,40 @@ function listen(channel) {
     // this will trigger whenever data is received
     channel.on('data', function(data) {
         appendToPage(data);
-        console.log(data);
     });
 }
 
 function appendToPage(data) {
 
-    var id = generateNewId();
+    var id = data.id;
 
+    // check if the zombie already exists in the platform
+    if (document.getElementById(id)) {
+        materialize.toast('A machine that already exists is trying to connect.', 4000);
+        return;
+    }
+
+    // generate the sonar for insertion
     new_sonar = appendNew(data, id);
 
-    // add a new pulsating sonar to the main window, which will be white
+    // insert the sonar to the main window, which will be white
     document.getElementById('all_zombies').innerHTML += new_sonar;
 
     // after 1 minute, the sonar will change to an okay state colour
     setTimeout(function () {
         document.getElementById(id).innerHTML = appendOkay(data, id);
-    }, 6000);
+    }, 60000);
 }
 
 function appendNew(data, id) {
 
     var append_new = `
         <div id="`+ id +`">
-            <div class="col-md-4" style="margin-top: 5%; text-align: center">
-                <div class="new-emitter" style="margin-bottom: 2%">
+            <div class="col s4" style="margin-top: 2%; text-align: center">
+                <div class="new-emitter" style="margin-bottom: 3%">
                     <div class="new-wave"></div>
                 </div>
-                <h4 class="c-header">`+ data.name +`</h4>
+                <h5 class="c-header">`+ data.name +`</h5>
             </div>
         </div>
     `;
@@ -58,18 +64,14 @@ function appendNew(data, id) {
 function appendOkay(data, id) {
     var append_okay = `
         <div id="`+ id +`">
-            <div class="col-md-4" style="margin-top: 5%; text-align: center">
-                <div class="okay-emitter" style="margin-bottom: 2%">
+            <div class="col s4" style="margin-top: 2%; text-align: center">
+                <div class="okay-emitter" style="margin-bottom: 3%">
                     <div class="okay-wave"></div>
                 </div>
-                <h4 class="c-header">`+ data.name +`</h4>
+                <h5 class="c-header">`+ data.name +`</h5>
             </div>
         </div>
     `;
 
     return append_okay;
-}
-
-function generateNewId() {
-    return Math.floor((Math.random() * 100000) + 1);
 }

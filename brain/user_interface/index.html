@@ -6,32 +6,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Monitor Everything</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.1.0/octicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono" rel="stylesheet">
     <link rel="stylesheet" href="./css/error_emitter.css">
     <link rel="stylesheet" href="./css/new_emitter.css">
     <link rel="stylesheet" href="./css/okay_emitter.css">
     <link rel="stylesheet" href="./css/text.css">
   </head>
   <body>
-      <div class="col-md-12" id="all_zombies">
-          <div class="col-md-4" style="margin-top: 5%">
-              <div class="error-emitter">
-                  <div class="error-wave"></div>
+      <div class="container">
+          <h3 class="c-title">System Brain.</h3>
+          <h6 class="c-subtitle">let's keep it simple.</h6>
+          <div class="row" id="all_zombies">
+              <div id="sample">
+                  <div class="col s4" style="margin-top: 2%; text-align: center">
+                      <div class="okay-emitter" style="margin-bottom: 3%">
+                          <div class="okay-wave"></div>
+                      </div>
+                      <h5 class="c-header">Sample</h5>
+                  </div>
               </div>
           </div>
-          <div class="col-md-4" style="margin-top: 5%">
-              <div class="new-emitter">
-                  <div class="new-wave"></div>
-              </div>
-          </div>
+
+          <!-- Modal Trigger -->
+ <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+
+ <!-- Modal Structure -->
+ <div id="modal1" class="modal">
+   <div class="modal-content">
+     <h4>Modal Header</h4>
+     <p>A bunch of text</p>
+   </div>
+   <div class="modal-footer">
+     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+   </div>
+ </div>
       </div>
 
 
-    
-    <script type='text/javascript' src='https://cdn.scaledrone.com/scaledrone.min.js'></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script type="text/javascript" src='https://cdn.scaledrone.com/scaledrone.min.js'></script>
     <script src="../support_modules/drone_control.js" charset="utf-8"></script>
     <script src="../support_modules/channel_control.js" charset="utf-8"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
   </body>
 </html>
