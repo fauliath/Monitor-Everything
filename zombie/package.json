@@ -1,0 +1,19 @@
+{
+  "name": "monitor-everything",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fauliath/Monitor-Everything.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fauliath/Monitor-Everything/issues"
+  },
+  "homepage": "https://github.com/fauliath/Monitor-Everything#readme"
+}
