@@ -13,6 +13,9 @@ function createWindow() {
         height: 600
     });
 
+    // set the window fullscreen, but retain the window control
+    win.maximize();
+
     // open index.html
     win.loadURL(url.format({
         pathname: './user_interface/index.html',

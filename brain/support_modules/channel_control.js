@@ -1,4 +1,5 @@
-const storage = require('electron-json-storage');
+const Store = require('electron-store');
+const store = new Store();
 
 function startListening(channel) {
 
@@ -19,6 +20,12 @@ function startListening(channel) {
 function listen(channel) {
     // this will trigger whenever data is received
     channel.on('data', function(data) {
+
+        // check if the zombie already exists in the platform
+        if (document.getElementById(data.id)) {
+            //return;
+        }
+
         appendToPage(data);
     });
 }
@@ -27,11 +34,10 @@ function appendToPage(data) {
 
     var id = data.id;
 
-    // check if the zombie already exists in the platform
-    if (document.getElementById(id)) {
-        materialize.toast('A machine that already exists is trying to connect.', 4000);
-        return;
-    }
+    // write the new id to the list of the existing machines
+    var existing_machines = store.get('machine_ids');
+
+    store.set('machine_ids', existing_machines + ',' + id);
 
     // generate the sonar for insertion
     new_sonar = appendNew(data, id);
@@ -42,19 +48,17 @@ function appendToPage(data) {
     // after 1 minute, the sonar will change to an okay state colour
     setTimeout(function () {
         document.getElementById(id).innerHTML = appendOkay(data, id);
-    }, 60000);
+    }, 6000);
 }
 
 function appendNew(data, id) {
 
     var append_new = `
-        <div id="`+ id +`">
-            <div class="col s4" style="margin-top: 2%; text-align: center">
-                <div class="new-emitter" style="margin-bottom: 3%">
-                    <div class="new-wave"></div>
-                </div>
-                <h5 class="c-header">`+ data.name +`</h5>
+        <div class="col-sm-4" style="margin-top: 2%; text-align: center" id="`+ id +`">
+            <div class="new-emitter" style="margin-bottom: 1%">
+                <div class="new-wave"></div>
             </div>
+            <h5 class="c-header">`+ data.name +`</h5>
         </div>
     `;
 
@@ -63,14 +67,10 @@ function appendNew(data, id) {
 
 function appendOkay(data, id) {
     var append_okay = `
-        <div id="`+ id +`">
-            <div class="col s4" style="margin-top: 2%; text-align: center">
-                <div class="okay-emitter" style="margin-bottom: 3%">
-                    <div class="okay-wave"></div>
-                </div>
-                <h5 class="c-header">`+ data.name +`</h5>
-            </div>
+        <div class="okay-emitter" style="margin-bottom: 1%">
+            <div class="okay-wave"></div>
         </div>
+        <h5 class="c-header">`+ data.name +`</h5>
     `;
 
     return append_okay;
